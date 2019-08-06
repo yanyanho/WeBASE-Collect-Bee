@@ -17,6 +17,7 @@ package com.webank.webasebee.core.api.controller;
 
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,6 +59,9 @@ public class AccountInfoController {
             BindingResult result) {
         if (result.hasErrors()) {
             return ResponseUtils.validateError(result);
+        }
+        if (!StringUtils.startsWithIgnoreCase(contractAddress, "0x")) {
+            return ResponseUtils.paramError("Contract address is not valid.");
         }
         return accountInfoApiManager.getAccountInfoByContractAddresss(contractAddress);
     }

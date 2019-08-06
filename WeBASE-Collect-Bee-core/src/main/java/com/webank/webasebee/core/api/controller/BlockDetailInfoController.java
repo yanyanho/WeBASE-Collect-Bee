@@ -16,7 +16,9 @@
 package com.webank.webasebee.core.api.controller;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -73,9 +75,13 @@ public class BlockDetailInfoController {
 
     @PostMapping("/hash/get")
     @ApiOperation(value = "get block Info by Hash", httpMethod = "POST")
-    public CommonResponse getBlockDetailInfoByBlockHash(@RequestBody @Valid String blockHash, BindingResult result) {
+    public CommonResponse getBlockDetailInfoByBlockHash(@RequestBody @Valid @NotBlank String blockHash,
+            BindingResult result) {
         if (result.hasErrors()) {
             return ResponseUtils.validateError(result);
+        }
+        if (!StringUtils.startsWithIgnoreCase(blockHash, "0x")) {
+            return ResponseUtils.paramError("Block hash is not valid.");
         }
         return blockDetailInfoManager.getBlockDetailInfoByBlockHash(blockHash);
     }
