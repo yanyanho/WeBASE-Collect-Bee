@@ -72,7 +72,7 @@ public class PrepareTaskJob implements SimpleJob {
      * 
      * @param ShardingContext: elastic-job
      * @return void
-     * @see com.dangdang.ddframe.job.api.simple.SimpleJob#execute(com.dangdang.ddframe.job.api.ShardingContext)
+     * @see SimpleJob#execute(ShardingContext)
      */
     @Override
     public void execute(ShardingContext shardingContext) {

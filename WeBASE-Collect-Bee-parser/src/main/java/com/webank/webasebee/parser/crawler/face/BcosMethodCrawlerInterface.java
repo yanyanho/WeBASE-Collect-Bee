@@ -42,5 +42,5 @@ public interface BcosMethodCrawlerInterface {
      * @return void
      */
     MethodBO transactionHandler(Transaction transaction, BigInteger blockTimeStamp, Map.Entry<String, String> entry,
-            String methodName, Map<String, String> txHashContractAddressMapping);
+                                String methodName, Map<String, String> txHashContractAddressMapping);
 }
