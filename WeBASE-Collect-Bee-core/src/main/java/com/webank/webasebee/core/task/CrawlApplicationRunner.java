@@ -15,8 +15,6 @@
  */
 package com.webank.webasebee.core.task;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.List;
 
 import org.fisco.bcos.web3j.protocol.core.methods.response.BcosBlock.Block;
@@ -31,9 +29,9 @@ import com.webank.webasebee.common.constants.BlockForkConstants;
 import com.webank.webasebee.core.config.SystemEnvironmentConfig;
 import com.webank.webasebee.core.service.BlockAsyncService;
 import com.webank.webasebee.core.service.BlockCheckService;
+import com.webank.webasebee.core.service.BlockDepotService;
 import com.webank.webasebee.core.service.BlockIndexService;
 import com.webank.webasebee.core.service.BlockPrepareService;
-import com.webank.webasebee.core.service.BlockDepotService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -75,12 +73,18 @@ public class CrawlApplicationRunner implements ApplicationRunner {
      * The key driving entrance of single instance depot: 1. check timeout txs and process errors; 2. produce tasks; 3.
      * consume tasks; 4. check the fork status; 5. rollback; 6. continue and circle;
      * 
+     * @throws InterruptedException
+     * 
      */
-    public void handle() {
+    public void handle() throws InterruptedException {
         try {
             startBlockNumber = blockIndexService.getStartBlockIndex();
             log.info("Start succeed, and the block number is {}", startBlockNumber);
-            while (signal) {
+        } catch (Exception e) {
+            log.error("depot Error, {}", e.getMessage());
+        }
+        while (signal) {
+            try {
                 long currentChainHeight = blockPrepareService.getCurrentBlockHeight();
                 long fromHeight = getHeight(blockPrepareService.getTaskPoolHeight());
                 // control the batch unit number
@@ -110,15 +114,12 @@ public class CrawlApplicationRunner implements ApplicationRunner {
                 }
                 blockTaskPoolService.checkTimeOut();
                 blockTaskPoolService.processErrors();
+            } catch (Exception e) {
+                log.error("{}", e);
+                Thread.sleep(60 * 1000);
             }
-        } catch (IOException e) {
-            log.error("depot IOError, {}", e.getMessage());
-        } catch (InterruptedException e) {
-            log.error("depot InterruptedException, {}", e.getMessage());
-            Thread.currentThread().interrupt();
-        } catch (ParseException e) {
-            log.error("depot ParseException, {}", e.getMessage());
         }
+
     }
 
     @Override
