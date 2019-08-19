@@ -21,8 +21,6 @@ import org.springframework.context.annotation.Configuration;
 import java.math.BigInteger;
 
 @Data
-@Configuration
-@ConfigurationProperties(prefix = ConstantProperties.CONSTANT_PREFIX)
 public class ConstantProperties {
     
     public static final BigInteger GAS_PRICE = new BigInteger("1");
