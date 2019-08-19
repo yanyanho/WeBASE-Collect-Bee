@@ -1,1 +1,1 @@
-1 db parse两个组件需要替换
+1 db parse两个组件需要替换, core下面config目录
