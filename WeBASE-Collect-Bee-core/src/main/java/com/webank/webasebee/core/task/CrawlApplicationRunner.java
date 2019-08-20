@@ -25,7 +25,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import com.webank.webasebee.common.constants.BlockForkConstants;
+import com.webank.webasebee.common.constants.BlockConstants;
 import com.webank.webasebee.core.config.SystemEnvironmentConfig;
 import com.webank.webasebee.core.service.BlockAsyncService;
 import com.webank.webasebee.core.service.BlockCheckService;
@@ -92,8 +92,7 @@ public class CrawlApplicationRunner implements ApplicationRunner {
                 long toHeight = currentChainHeight < end ? currentChainHeight : end;
                 log.info("Current depot status: {} of {}, and try to process block from {} to {}", fromHeight - 1,
                         currentChainHeight, fromHeight, toHeight);
-                boolean certainty =
-                        toHeight + 1 < currentChainHeight - BlockForkConstants.MAX_FORK_CERTAINTY_BLOCK_NUMBER;
+                boolean certainty = toHeight + 1 < currentChainHeight - BlockConstants.MAX_FORK_CERTAINTY_BLOCK_NUMBER;
                 if (fromHeight <= toHeight) {
                     log.info("Try to sync block number {} to {} of {}", fromHeight, toHeight, currentChainHeight);
                     blockPrepareService.prepareTask(fromHeight, toHeight, certainty);
