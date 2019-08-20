@@ -23,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.fisco.bcos.temp.BAC001;
 import org.fisco.bcos.temp.BAC002;
+import org.fisco.bcos.temp.BAC003;
 import org.fisco.bcos.web3j.crypto.Credentials;
 import org.fisco.bcos.web3j.protocol.Web3j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -19,7 +19,7 @@ package com.webank.webasebee.core.app.asset;
  *
  */
 public enum AssetType {
-    BAC001("BAC001"), BAC002("BAC002");
+    BAC001("BAC001"), BAC002("BAC002"),BAC003("BAC003");
 
     private String value;
 

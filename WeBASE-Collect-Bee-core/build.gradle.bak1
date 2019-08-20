@@ -1,0 +1,32 @@
+//bootJar {
+//    destinationDir file('dist/apps')
+//    archiveName rootProject.name + '-' + project.name + version + '.jar'
+//    exclude '**/*.xml'
+//    exclude '**/*.properties'
+//
+//    doLast {
+//
+//        copy {
+//            from file('src/main/resources/')
+//            into 'dist/conf'
+//        }
+//        copy {
+//            from file('src/main/shell/')
+//            into 'dist'
+//        }
+//        copy {
+//            from configurations.runtime
+//            into 'dist/lib'
+//        }
+//        copy {
+//            from file('.').listFiles().findAll{File f -> (f.name.endsWith('.sh') || f.name.endsWith('.env'))}
+//            into 'dist'
+//        }
+//    }
+//}
+//
+//clean {
+//    delete 'dist'
+//    delete 'build'
+//    delete 'log'
+//}

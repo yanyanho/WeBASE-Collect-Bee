@@ -50,8 +50,6 @@ public class TransLogService {
      Map<String, Object> imap = new HashMap<>();
      imap.put("pageNo",pageNumber);
      imap.put("pageSize",pageSize);
-//        Map<String, Object> andConditionMap = new HashMap<>();
-//        andConditionMap.put("contractName",contractName);
       imap.put("unitName",contractName+contractName);
 
      CommonDataResponse result = restTemplate.postForObject(url,imap, CommonDataResponse.class);

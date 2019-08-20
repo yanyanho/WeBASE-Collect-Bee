@@ -1,32 +1,24 @@
-jar {
-    destinationDir file('dist/apps')
+bootJar {
+    destinationDir file('dist')
     archiveName rootProject.name + '-' + project.name + version + '.jar'
-    exclude '**/*.xml'
-    exclude '**/*.properties'
 
     doLast {
-
         copy {
-            from file('src/main/resources/')
-            into 'dist/conf'
+            from file('config/contract/')
+            into 'dist/config/contract'
         }
         copy {
             from file('src/main/shell/')
             into 'dist'
         }
         copy {
-            from configurations.runtime
-            into 'dist/lib'
-        }
-        copy {
-            from file('.').listFiles().findAll{File f -> (f.name.endsWith('.sh') || f.name.endsWith('.env'))}
-            into 'dist'
+            from file('src/main/resources/')
+            into 'dist/config'
         }
     }
 }
-
 clean {
-    delete 'dist'
-    delete 'build'
-    delete 'log'
+    println "delete ${projectDir}/dist"
+    delete "${projectDir}/dist"
 }
+
