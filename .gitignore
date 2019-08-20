@@ -2,7 +2,6 @@
 !.mvn/wrapper/maven-wrapper.jar
 /bin/
 bin/*
-config/*
 /.gradle/
 
 
@@ -30,16 +29,8 @@ config/*
 /nbdist/
 /.nb-gradle/
 
-src/main/scripts
-src/main/resources
 
 ## contracts ##
-src/main/java/com/webank/bcosbee/generated
-src/main/java/com/webank/webasebee/generated
-src/main/java/com/webank/blockchain/
-src/main/java/org
 my.log*
 *.log
 
-src/test/java/com/webank/webasebee/contract/
-WeBASE-Collect-Bee-core/src/test/java/com/webank/webasebee/core/contract/
