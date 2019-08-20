@@ -1,4 +1,4 @@
-1 进入WeBASE-Collect-Bee-core目录下，执行gradle clean bootJar;(gradle 4.10.0以上)
+1 进入WeBASE-Collect-Bee-core目录下，执行../gradlew clean bootJar;(gradle 4.10.0以上)
 2  cd dist/config  修改相应配置
  修改system.nodeStr=node1@127.0.0.1:20800 
  修改sharding.jdbc.datasource.ds.jdbc-url=jdbc:mysql://10.107.118.64:3306/bac_bee1?autoReconnect=true&useSSL=false&serverTimezone=GMT%2b8&useUnicode=true&characterEncoding=UTF-8

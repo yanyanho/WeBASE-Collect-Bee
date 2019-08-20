@@ -1,0 +1,74 @@
+/**
+ * Copyright (C) 2018 WeBank, Inc. All Rights Reserved.
+ */
+package com.webank.webasebee.parser.generated.crawler.method;
+
+
+import java.math.BigInteger;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import org.fisco.bcos.web3j.abi.FunctionReturnDecoder;
+import org.fisco.bcos.web3j.abi.datatypes.Type;
+import org.fisco.bcos.web3j.protocol.core.methods.response.AbiDefinition.NamedType;
+import org.fisco.bcos.web3j.protocol.core.methods.response.Transaction;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.stereotype.Service;
+import com.webank.webasebee.parser.crawler.face.BcosMethodCrawlerInterface;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.webank.webasebee.common.constants.ContractConstants;
+import com.webank.webasebee.common.tools.AddressUtils;
+import com.webank.webasebee.common.tools.BigIntegerUtils;
+import com.webank.webasebee.common.tools.BoolUtils;
+import com.webank.webasebee.common.tools.BytesUtils;
+import com.webank.webasebee.common.tools.MethodUtils;
+import lombok.extern.slf4j.Slf4j;
+import com.webank.webasebee.common.bo.contract.ContractMapsInfo;
+import com.webank.webasebee.common.bo.data.MethodBO;
+import com.webank.webasebee.parser.generated.bo.method.BAC003SafeBatchTransferFromBO;
+
+@Slf4j
+@Service
+@ConditionalOnProperty(name = "monitor.BAC003.safeBatchTransferFromMethodCrawlerService", havingValue = "on")
+public class BAC003SafeBatchTransferFromMethodCrawlerImpl implements BcosMethodCrawlerInterface {
+
+	@Autowired
+	private ContractMapsInfo contractMapsInfo; 
+
+	@Override
+	public MethodBO transactionHandler(Transaction transaction, BigInteger blockTimeStamp,
+	 Map.Entry<String, String> entry, String methodName, Map<String, String> txHashContractAddress) {
+		log.debug("Begin process BAC003SafeBatchTransferFrom Transaction");
+		BAC003SafeBatchTransferFromBO entity = new BAC003SafeBatchTransferFromBO();
+		entity.setTxHash(transaction.getHash());
+		entity.setBlockHeight(transaction.getBlockNumber().longValue());
+		
+		String input = transaction.getInput();
+		String mapKey = null;
+		if(transaction.getTo() == null || transaction.getTo().equals(ContractConstants.EMPTY_ADDRESS)){
+			input = input.substring(2 + entry.getKey().length());
+			mapKey = entry.getValue() + entry.getValue();
+			entity.setContractAddress(txHashContractAddress.get(entity.getTxHash()));
+		}else{
+			input = input.substring(10);
+			mapKey = methodName;
+			entity.setContractAddress(transaction.getTo());
+		}
+		
+		log.debug("input : {}", input);
+				
+		List<NamedType> list = contractMapsInfo.getMethodFiledsMap().get(mapKey);
+		List<Type> params = FunctionReturnDecoder.decode(input, MethodUtils.getMethodTypeReferenceList(list));
+		
+		entity.set_from(AddressUtils.bigIntegerToString(params.get(0).getValue()));
+		entity.set_to(AddressUtils.bigIntegerToString(params.get(1).getValue()));
+		entity.set_ids(String.valueOf(params.get(2).getValue()));
+		entity.set_values(String.valueOf(params.get(3).getValue()));
+		entity.set_data(BytesUtils.bytesArrayToString(params.get(4).getValue()));
+		entity.setBlockTimeStamp(new Date(blockTimeStamp.longValue()));	
+		entity.setIdentifier("BAC003SafeBatchTransferFrom");			
+		
+		log.debug("end process BAC003SafeBatchTransferFrom Transaction");
+		return entity;
+	}
+}
