@@ -27,10 +27,17 @@ public class TransLogService {
 
 
         if(userAddress != null && userAddress != "" ) {
-          Map<String, Object> orConditionMap = new HashMap<>();
-         orConditionMap.put("from",userAddress);
-         orConditionMap.put("to",userAddress);
-         imap.put("orConditions",orConditionMap);
+            if (!"BAC003TransferSingle".equals(unitName)) {
+                Map<String, Object> orConditionMap = new HashMap<>();
+                orConditionMap.put("from", userAddress);
+                orConditionMap.put("to", userAddress);
+                imap.put("orConditions", orConditionMap);
+            } else {
+                Map<String, Object> orConditionMap = new HashMap<>();
+                orConditionMap.put("_from", userAddress);
+                orConditionMap.put("_to", userAddress);
+                imap.put("orConditions", orConditionMap);
+            }
         }
 
      imap.put("unitName",unitName);
