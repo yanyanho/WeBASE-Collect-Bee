@@ -1,0 +1,87 @@
+Configuration:
+  status: warn
+
+  Properties: # 定义全局变量
+    Property: # 缺省配置（用于开发环境）。其他环境可以在VM参数中指定，如下：
+      - name: log.level.console
+        value: trace
+      - name: log.level.webasebee
+        value: info
+      - name: log.level.web3j
+        value: info
+      - name: log.path
+        value: /data/logs/WeBASE-Collect-Bee
+      - name: project.name
+        value: WeBASE-Collect-Bee
+
+
+  Appenders:
+    Console:  #输出到控制台
+      name: CONSOLE
+      target: SYSTEM_OUT
+      ThresholdFilter:
+        level: ${sys:log.level.console} # “sys:”表示：如果VM参数中没指定这个变量值，则使用本文件中定义的缺省全局变量值
+        onMatch: ACCEPT
+        onMismatch: DENY
+      PatternLayout:
+        pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS}:%5p %t  (%F:%M:%L)   - %m%n"
+
+    RollingFile: # 输出到文件
+      - name: WEBASEBEE_FILE
+        ignoreExceptions: false
+        fileName: ${log.path}/${project.name}.log
+        filePattern: "${log.path}/$${date:yyyy-MM}/${project.name}-%d{yyyy-MM-dd}-%i.log.gz"
+        PatternLayout:
+          pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS}:%5p %t  (%F:%M:%L)   - %m%n"
+        Policies:
+          TimeBasedTriggeringPolicy:  # 按天分类
+            modulate: true
+            interval: 1
+          SizeBasedTriggeringPolicy: # 超过128MB归档
+            size: "128 MB"
+        DefaultRolloverStrategy: # 文件最多1000个
+          max: 1000
+
+      - name: WEB3J_FILE
+        ignoreExceptions: false
+        fileName: ${log.path}/${project.name}-web3j.log
+        filePattern: "${log.path}/$${date:yyyy-MM}/${project.name}-web3j-%d{yyyy-MM-dd}-%i.log.gz"
+        PatternLayout:
+          pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS}:%5p %t  (%F:%M:%L)   - %m%n"
+        Policies:
+          TimeBasedTriggeringPolicy:  # 按天分类
+            modulate: true
+            interval: 1
+          SizeBasedTriggeringPolicy: # 超过128MB归档
+            size: "128 MB"
+        DefaultRolloverStrategy: # 文件最多1000个
+          max: 1000
+
+
+  Loggers:
+    Root: # 同步打印
+      level: info
+      includeLocation: true
+      AppenderRef:
+        - ref: CONSOLE
+        - ref: WEBASEBEE_FILE
+
+    AsyncLogger: # 为com.webank.webasebee包配置特殊的Log级别，  异步打印
+
+      - name: org.fisco.bcos
+        additivity: false
+        includeLocation: true
+        level: ${sys:log.level.web3j}
+        AppenderRef:
+          - ref: CONSOLE
+          - ref: WEB3J_FILE
+
+      - name: com.webank.webasebee
+        additivity: false
+        includeLocation: true
+        level: ${sys:log.level.webasebee}
+        AppenderRef:
+          - ref: CONSOLE
+          - ref: WEBASEBEE_FILE
+
+

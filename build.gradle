@@ -16,122 +16,131 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 allprojects {
-  repositories {
-    maven {
-        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    repositories {
+        maven {
+            url "http://maven.aliyun.com/nexus/content/groups/public/"
+        }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+        maven { url "https://dl.bintray.com/ethereum/maven/" }
+        mavenLocal()
+        jcenter()
     }
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
-    maven { url "https://dl.bintray.com/ethereum/maven/" }
-    mavenLocal()  
-    jcenter() 
-  }
 }
 
 subprojects {
-  version = "1.1.0"
+    version = "1.1.0"
 
-  apply plugin: "java"
-  apply plugin: 'eclipse'
-  apply plugin: 'maven'
-  apply plugin: "org.springframework.boot"
-  apply plugin: "io.spring.dependency-management"
+    apply plugin: "java"
+    apply plugin: 'eclipse'
+    apply plugin: 'maven'
+    apply plugin: "org.springframework.boot"
+    apply plugin: "io.spring.dependency-management"
 
-  sourceCompatibility = '1.8'
-  targetCompatibility = '1.8'
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
 
-  def defaultEncoding = 'UTF-8'
-  tasks.withType(AbstractCompile).each { it.options.encoding = defaultEncoding }
+    def defaultEncoding = 'UTF-8'
+    tasks.withType(AbstractCompile).each { it.options.encoding = defaultEncoding }
 
-  javadoc {
-    options.encoding = defaultEncoding
-    options.addBooleanOption('Xdoclint:none', true)
-  }
-
-  compileJava.dependsOn(processResources)
-
-  test {
-    include "**/model/**", "**/controller/**", "**/usecase/**", "**/util/**", "**/context/**"
-  }
-
-  springBoot {
-    buildInfo()
-  }
-
-  dependencyManagement {
-    imports {
-      mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+    javadoc {
+        options.encoding = defaultEncoding
+        options.addBooleanOption('Xdoclint:none', true)
     }
-  }
 
-  dependencies {
-    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
-    annotationProcessor "org.projectlombok:lombok"
-    compileOnly "org.springframework.boot:spring-boot-configuration-processor"
-    compileOnly "org.projectlombok:lombok"
-    implementation "org.springframework.boot:spring-boot-starter-web" 
-    implementation "org.springframework.boot:spring-boot-starter-aop" 
-    implementation "com.google.guava:guava:20.0"
-    implementation "commons-io:commons-io:2.6"
-    implementation ('org.apache.commons:commons-lang3:3.8.1')
-    implementation 'cn.hutool:hutool-all:4.1.19'
-     // web3j依赖
-    implementation ('org.fisco-bcos:web3sdk:2.0.5')
+    compileJava.dependsOn(processResources)
 
-    testAnnotationProcessor "org.projectlombok:lombok"
-    testCompileOnly "org.projectlombok:lombok"
-    testImplementation "org.springframework.boot:spring-boot-starter-test"
-  }
+    test {
+        include "**/model/**", "**/controller/**", "**/usecase/**", "**/util/**", "**/context/**"
+    }
+
+    springBoot {
+        buildInfo()
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+        }
+    }
+
+    dependencies {
+        annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+        annotationProcessor "org.projectlombok:lombok"
+        compileOnly "org.springframework.boot:spring-boot-configuration-processor"
+        compileOnly "org.projectlombok:lombok"
+        implementation "org.springframework.boot:spring-boot-starter-web"
+        implementation "org.springframework.boot:spring-boot-starter-aop"
+        implementation "com.google.guava:guava:20.0"
+        implementation "commons-io:commons-io:2.6"
+        implementation('org.apache.commons:commons-lang3:3.8.1')
+        implementation 'cn.hutool:hutool-all:4.1.19'
+        implementation 'org.springframework.boot:spring-boot-starter-log4j2'// log4j2依赖
+        implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.6.0-rc4'//识别yml配置日志依赖
+        implementation 'com.lmax:disruptor:3.4.2' //异步记录日志依赖
+        // web3j依赖
+        implementation('org.fisco-bcos:web3sdk:2.0.5')
+
+        testAnnotationProcessor "org.projectlombok:lombok"
+        testCompileOnly "org.projectlombok:lombok"
+        testImplementation "org.springframework.boot:spring-boot-starter-test"
+    }
+
+
+    configurations {
+        all*.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+        all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging' // 去除lombok
+    }
 }
 
 project(':WeBASE-Collect-Bee-core') {
-  dependencies {
-    implementation project(':WeBASE-Collect-Bee-parser')
-    implementation project(':WeBASE-Collect-Bee-common')
-    implementation project(':WeBASE-Collect-Bee-db')
-    implementation project(':WeBASE-Collect-Bee-extractor')   
-    implementation "io.springfox:springfox-swagger2:2.9.2"
-    implementation "io.springfox:springfox-swagger-ui:2.9.2"
-    implementation('com.ibeetl:beetl:2.9.3')
-    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
-    implementation 'mysql:mysql-connector-java'
-    implementation('io.shardingsphere:sharding-jdbc-spring-boot-starter:3.1.0') {
-        exclude module: ':sharding-core'
-        compile fileTree(dir: '../libs', includes: ['*.jar'])
+    dependencies {
+        implementation project(':WeBASE-Collect-Bee-parser')
+        implementation project(':WeBASE-Collect-Bee-common')
+        implementation project(':WeBASE-Collect-Bee-db')
+        implementation project(':WeBASE-Collect-Bee-extractor')
+        implementation "io.springfox:springfox-swagger2:2.9.2"
+        implementation "io.springfox:springfox-swagger-ui:2.9.2"
+        implementation('com.ibeetl:beetl:2.9.3')
+        implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+        implementation 'mysql:mysql-connector-java'
+        implementation('io.shardingsphere:sharding-jdbc-spring-boot-starter:3.1.0') {
+            exclude module: ':sharding-core'
+            compile fileTree(dir: '../libs', includes: ['*.jar'])
+        }
+
+        // elastic-job
+        implementation('com.dangdang:elastic-job-lite-core:2.1.5')
+                {
+                    exclude group: 'log4j'
+                }
+        implementation('com.dangdang:elastic-job-lite-spring:2.1.5')
+                {
+                    exclude group: 'log4j'
+                }
+
     }
-    
-    // elastic-job
-    implementation('com.dangdang:elastic-job-lite-core:2.1.5')
-    {
-        exclude group: 'log4j'
-    }
-    implementation('com.dangdang:elastic-job-lite-spring:2.1.5')
-    {
-        exclude group: 'log4j'
-    }
-   
-  }
 }
 
 project(':WeBASE-Collect-Bee-parser') {
-  dependencies {
-    implementation project(':WeBASE-Collect-Bee-extractor')   
-    implementation project(':WeBASE-Collect-Bee-common')
-  }
+    dependencies {
+        implementation project(':WeBASE-Collect-Bee-extractor')
+        implementation project(':WeBASE-Collect-Bee-common')
+    }
 }
 
 project(':WeBASE-Collect-Bee-db') {
-  dependencies {
-    implementation project(':WeBASE-Collect-Bee-extractor')   
-    implementation project(':WeBASE-Collect-Bee-common')
-    implementation project(':WeBASE-Collect-Bee-parser')   
-    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
-    implementation 'mysql:mysql-connector-java'
-    implementation('io.shardingsphere:sharding-jdbc-spring-boot-starter:3.1.0') {
-        exclude module: ':sharding-core'
-        compile fileTree(dir: '../libs', includes: ['*.jar'])
-    }
+    dependencies {
+        implementation project(':WeBASE-Collect-Bee-extractor')
+        implementation project(':WeBASE-Collect-Bee-common')
+        implementation project(':WeBASE-Collect-Bee-parser')
+        implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+        implementation 'mysql:mysql-connector-java'
+        implementation('io.shardingsphere:sharding-jdbc-spring-boot-starter:3.1.0') {
+            exclude module: ':sharding-core'
+            compile fileTree(dir: '../libs', includes: ['*.jar'])
+        }
 
-  }
+    }
 }
 
 configurations {
@@ -142,5 +151,5 @@ configurations {
 }
 
 wrapper {
-  gradleVersion = "5.4.1"
+    gradleVersion = "5.4.1"
 }
