@@ -1,11 +1,14 @@
 package com.webank.webasebee.core.app.trans;
 
 
-import com.webank.webasebee.common.vo.CommonDataResponse;
 import com.webank.webasebee.common.vo.CommonResponse;
+import com.webank.webasebee.core.api.manager.EventManager;
+import com.webank.webasebee.core.api.manager.MethodManager;
+import com.webank.webasebee.db.vo.UnitQueryPageReq;
+import com.webank.webasebee.db.vo.UnitSpecificationQueryPageReq;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -15,51 +18,46 @@ import java.util.Map;
 public class TransLogService {
 
     @Autowired
-    RestTemplate restTemplate;
+    private EventManager eventManager;
+    @Autowired
+    private MethodManager methodManager;
 
 
     public CommonResponse findTransLog(String unitName, String contractAddress, String userAddress, int pageNumber, int pageSize) throws UnsupportedEncodingException {
 
-      String url = "http://localhost:8899/"+"api/event/specification/get";
-     Map<String, Object> imap = new HashMap<>();
-     imap.put("pageNo",pageNumber);
-     imap.put("pageSize",pageSize);
+        UnitSpecificationQueryPageReq param = new UnitSpecificationQueryPageReq();
+        param.setUnitName(unitName);
+        param.setPageNo(pageNumber);
+        param.setPageSize(pageSize);
 
 
-        if(userAddress != null && userAddress != "" ) {
+        if (StringUtils.isNotBlank(userAddress)) {
+            Map<String, String> orConditionMap = new HashMap<>();
             if (!"BAC003TransferSingle".equals(unitName)) {
-                Map<String, Object> orConditionMap = new HashMap<>();
                 orConditionMap.put("from", userAddress);
                 orConditionMap.put("to", userAddress);
-                imap.put("orConditions", orConditionMap);
             } else {
-                Map<String, Object> orConditionMap = new HashMap<>();
                 orConditionMap.put("_from", userAddress);
                 orConditionMap.put("_to", userAddress);
-                imap.put("orConditions", orConditionMap);
             }
+            param.setOrConditions(orConditionMap);
         }
 
-     imap.put("unitName",unitName);
 
-     Map<String, Object> andConditionMap = new HashMap<>();
-     andConditionMap.put("eventContractAddress",contractAddress);
-     imap.put("andConditions",andConditionMap);
+        Map<String, String> andConditionMap = new HashMap<>();
+        andConditionMap.put("eventContractAddress", contractAddress);
+        param.setAndConditions(andConditionMap);
 
-     CommonDataResponse result = restTemplate.postForObject(url,imap, CommonDataResponse.class);
-     return result;
+        return eventManager.getPageListByReq(param);
     }
 
 
-    public CommonResponse findAccountInfo( String contractName, int pageNumber, int pageSize) {
+    public CommonResponse findAccountInfo(String contractName, int pageNumber, int pageSize) {
+        UnitQueryPageReq<String> param = new UnitQueryPageReq<>();
+        param.setUnitName(contractName + contractName);
+        param.setPageNo(pageNumber);
+        param.setPageSize(pageSize);
 
-      String url = "http://localhost:8899/"+"api/method/name/get";
-     Map<String, Object> imap = new HashMap<>();
-     imap.put("pageNo",pageNumber);
-     imap.put("pageSize",pageSize);
-      imap.put("unitName",contractName+contractName);
-
-     CommonDataResponse result = restTemplate.postForObject(url,imap, CommonDataResponse.class);
-     return result;
+        return methodManager.find(param);
     }
 }
