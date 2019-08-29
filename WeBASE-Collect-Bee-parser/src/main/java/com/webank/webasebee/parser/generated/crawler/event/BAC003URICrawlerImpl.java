@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.fisco.bcos.temp.BAC003;
 import org.fisco.bcos.web3j.crypto.Credentials;
 import org.fisco.bcos.web3j.protocol.Web3j;
 import org.fisco.bcos.web3j.protocol.core.methods.response.TransactionReceipt;
@@ -20,15 +21,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import org.fisco.bcos.temp.BAC003;
-import org.fisco.bcos.temp.BAC003.URIEventResponse;
 import com.webank.webasebee.common.bo.data.EventBO;
 import com.webank.webasebee.parser.crawler.face.BcosEventCrawlerInterface;
 import com.webank.webasebee.parser.generated.bo.event.BAC003URIBO;
 import com.webank.webasebee.common.constants.ContractConstants;
 import com.webank.webasebee.common.tools.BigIntegerUtils;
-import com.webank.webasebee.common.tools.BytesUtils;
-import com.webank.webasebee.common.tools.JacksonUtils;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -53,12 +50,12 @@ public class BAC003URICrawlerImpl implements BcosEventCrawlerInterface {
 	
 	@Override
 	public List<EventBO> handleReceipt(TransactionReceipt receipt, BigInteger blockTimeStamp) {
-		List<URIEventResponse> URIEventResponseList = contract.getURIEvents(receipt);
+		List<BAC003.URIEventResponse> URIEventResponseList = contract.getURIEvents(receipt);
 		List<EventBO> list = new ArrayList<>(URIEventResponseList.size());
 		if(CollectionUtils.isEmpty(URIEventResponseList)) {
 		    return list;
 		}
-		for (URIEventResponse URIEventResponse : URIEventResponseList) {
+		for (BAC003.URIEventResponse URIEventResponse : URIEventResponseList) {
 			BAC003URIBO bAC003URI = new BAC003URIBO();
 			bAC003URI.setIdentifier("BAC003URI");		
 			bAC003URI.setBlockHeight(receipt.getBlockNumber().longValue());

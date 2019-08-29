@@ -33,8 +33,6 @@ import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.webank.webasebee.core.config.CoreBeanConfig.getCredentials;
-
 /**
  * TransService.
  * 

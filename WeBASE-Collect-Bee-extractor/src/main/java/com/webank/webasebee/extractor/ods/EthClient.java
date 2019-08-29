@@ -20,6 +20,7 @@ import java.math.BigInteger;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+import com.webank.webasebee.common.aspect.Retry;
 import org.fisco.bcos.web3j.protocol.Web3j;
 import org.fisco.bcos.web3j.protocol.core.DefaultBlockParameter;
 import org.fisco.bcos.web3j.protocol.core.DefaultBlockParameterName;
@@ -51,6 +52,7 @@ public class EthClient {
     private Web3j web3j;
 
     @Cacheable(cacheNames = { "block" })
+   @Retry
     public Block getBlock(BigInteger blockHeightNumber) throws IOException {
         Stopwatch stopwatch = Stopwatch.createStarted();
         log.debug("get block number: {}", blockHeightNumber);

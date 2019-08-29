@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.fisco.bcos.temp.BAC003;
 import org.fisco.bcos.web3j.crypto.Credentials;
 import org.fisco.bcos.web3j.protocol.Web3j;
 import org.fisco.bcos.web3j.protocol.core.methods.response.TransactionReceipt;
@@ -20,15 +21,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import org.fisco.bcos.temp.BAC003;
-import org.fisco.bcos.temp.BAC003.TransferSingleEventResponse;
 import com.webank.webasebee.common.bo.data.EventBO;
 import com.webank.webasebee.parser.crawler.face.BcosEventCrawlerInterface;
 import com.webank.webasebee.parser.generated.bo.event.BAC003TransferSingleBO;
 import com.webank.webasebee.common.constants.ContractConstants;
 import com.webank.webasebee.common.tools.BigIntegerUtils;
 import com.webank.webasebee.common.tools.BytesUtils;
-import com.webank.webasebee.common.tools.JacksonUtils;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -53,12 +51,12 @@ public class BAC003TransferSingleCrawlerImpl implements BcosEventCrawlerInterfac
 	
 	@Override
 	public List<EventBO> handleReceipt(TransactionReceipt receipt, BigInteger blockTimeStamp) {
-		List<TransferSingleEventResponse> TransferSingleEventResponseList = contract.getTransferSingleEvents(receipt);
+		List<BAC003.TransferSingleEventResponse> TransferSingleEventResponseList = contract.getTransferSingleEvents(receipt);
 		List<EventBO> list = new ArrayList<>(TransferSingleEventResponseList.size());
 		if(CollectionUtils.isEmpty(TransferSingleEventResponseList)) {
 		    return list;
 		}
-		for (TransferSingleEventResponse TransferSingleEventResponse : TransferSingleEventResponseList) {
+		for (BAC003.TransferSingleEventResponse TransferSingleEventResponse : TransferSingleEventResponseList) {
 			BAC003TransferSingleBO bAC003TransferSingle = new BAC003TransferSingleBO();
 			bAC003TransferSingle.setIdentifier("BAC003TransferSingle");		
 			bAC003TransferSingle.setBlockHeight(receipt.getBlockNumber().longValue());
