@@ -1,0 +1,35 @@
+{
+  "request": "http://localhost:8899/asset/list?contractName=BAC003",
+  "response": {
+    "status": 0,
+    "data": {
+      "pageNo": 1,
+      "pageSize": 50,
+      "totalCount": 2,
+      "orderBy": "blockTimeStamp",
+      "order": "DESC",
+      "result": [
+        {
+          "pkId": 2,
+          "blockHeight": 621,
+          "txHash": "0x9ad53b2f6d9d8f8ad1eeab2c796148de957876507b2d912a9f9bad59814299ff",
+          "contractAddress": "0xfe5f52847a070ed1d280d5da749389fe6db5b866",
+          "methodStatus": "0x0",
+          "description": "green walk 111",
+          "blockTimeStamp": "2019-08-29 14:42:04",
+          "depotUpdatetime": "2019-08-29 14:42:31"
+        },
+        {
+          "pkId": 1,
+          "blockHeight": 614,
+          "txHash": "0xcaeb02f30e9833338a93b087ebf18f0233f39a6d6a83fb297c7f6047f4e5ddba",
+          "contractAddress": "0x652900c69d130fd6b6c235be688569ca90b15464",
+          "methodStatus": "0x0",
+          "description": "green walk",
+          "blockTimeStamp": "2019-08-29 14:38:31",
+          "depotUpdatetime": "2019-08-29 14:38:36"
+        }
+      ]
+    }
+  }
+}

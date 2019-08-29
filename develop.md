@@ -12,4 +12,4 @@
 
 
 
-  *** 新增java时，db parse两个组件需要替换, core下面config目录, common中Java类***
+  *** 新增java时，db parse两个组件需要替换, core下面config目录, common中Java类*** application.property
