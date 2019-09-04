@@ -6,4 +6,4 @@ echo "Press ctrl + C to break ..."
 echo ""
 echo "Try to start server, please wait."
 sleep 3
-tail -f  webasebee-core.log
+tail -f ./logs/WeBASE-Collect-Bee.log

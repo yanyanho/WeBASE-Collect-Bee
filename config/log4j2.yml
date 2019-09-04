@@ -10,7 +10,7 @@ Configuration:
       - name: log.level.web3j
         value: info
       - name: log.path
-        value: /data/logs/WeBASE-Collect-Bee
+        value: ./logs
       - name: project.name
         value: WeBASE-Collect-Bee
 
