@@ -33,8 +33,6 @@ public class BAC001Send extends IdEntity {
     private String txHash;
     @Column(name = "contract_address")
     private String contractAddress;
-    @Column(name = "method_status")
-    private String methodStatus;
 	@Column(name = "_to")
 	private String to;
 	@Column(name = "_value")

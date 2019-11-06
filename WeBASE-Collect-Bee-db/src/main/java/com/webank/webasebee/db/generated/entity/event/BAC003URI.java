@@ -31,8 +31,6 @@ public class BAC003URI extends IdEntity {
     private long blockHeight;
     @Column(name = "tx_hash")
 	private String txHash;
-	@Column(name = "event_contract_address")
-    private String eventContractAddress;
 	@Column(name = "_id")
 	private Long _id;
 	@Column(name = "_value")

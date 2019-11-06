@@ -33,8 +33,6 @@ public class BAC003BAC003 extends IdEntity {
     private String txHash;
     @Column(name = "contract_address")
     private String contractAddress;
-    @Column(name = "method_status")
-    private String methodStatus;
 	@Column(name = "_description")
 	private String description;
 	@Column(name = "block_timestamp")

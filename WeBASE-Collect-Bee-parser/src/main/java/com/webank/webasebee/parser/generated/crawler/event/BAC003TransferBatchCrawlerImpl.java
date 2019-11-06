@@ -8,7 +8,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.fisco.bcos.temp.BAC003;
 import org.fisco.bcos.web3j.crypto.Credentials;
 import org.fisco.bcos.web3j.protocol.Web3j;
 import org.fisco.bcos.web3j.protocol.core.methods.response.TransactionReceipt;
@@ -21,10 +20,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import org.fisco.bcos.temp.BAC003;
+import org.fisco.bcos.temp.BAC003.TransferBatchEventResponse;
 import com.webank.webasebee.common.bo.data.EventBO;
 import com.webank.webasebee.parser.crawler.face.BcosEventCrawlerInterface;
 import com.webank.webasebee.parser.generated.bo.event.BAC003TransferBatchBO;
 import com.webank.webasebee.common.constants.ContractConstants;
+import com.webank.webasebee.common.tools.BigIntegerUtils;
+import com.webank.webasebee.common.tools.BytesUtils;
 import com.webank.webasebee.common.tools.JacksonUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,12 +53,12 @@ public class BAC003TransferBatchCrawlerImpl implements BcosEventCrawlerInterface
 	
 	@Override
 	public List<EventBO> handleReceipt(TransactionReceipt receipt, BigInteger blockTimeStamp) {
-		List<BAC003.TransferBatchEventResponse> TransferBatchEventResponseList = contract.getTransferBatchEvents(receipt);
+		List<TransferBatchEventResponse> TransferBatchEventResponseList = contract.getTransferBatchEvents(receipt);
 		List<EventBO> list = new ArrayList<>(TransferBatchEventResponseList.size());
 		if(CollectionUtils.isEmpty(TransferBatchEventResponseList)) {
 		    return list;
 		}
-		for (BAC003.TransferBatchEventResponse TransferBatchEventResponse : TransferBatchEventResponseList) {
+		for (TransferBatchEventResponse TransferBatchEventResponse : TransferBatchEventResponseList) {
 			BAC003TransferBatchBO bAC003TransferBatch = new BAC003TransferBatchBO();
 			bAC003TransferBatch.setIdentifier("BAC003TransferBatch");		
 			bAC003TransferBatch.setBlockHeight(receipt.getBlockNumber().longValue());

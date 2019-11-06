@@ -31,8 +31,6 @@ public class BAC002Send extends IdEntity {
     private long blockHeight;
     @Column(name = "tx_hash")
 	private String txHash;
-	@Column(name = "event_contract_address")
-    private String eventContractAddress;
 	@Column(name = "_contract_address")
 	private String contractAddress;
 	@Column(name = "_from")
