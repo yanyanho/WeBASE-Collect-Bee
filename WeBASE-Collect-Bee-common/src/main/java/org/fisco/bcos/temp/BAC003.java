@@ -113,20 +113,20 @@ public class BAC003 extends Contract {
 
     public RemoteCall<String> uri(BigInteger _id) {
         final Function function = new Function(FUNC_URI, 
-                Arrays.<Type>asList(new Uint256(_id)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_id)), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<Utf8String>() {}));
         return executeRemoteCallSingleValueReturn(function, String.class);
     }
 
     public RemoteCall<byte[]> onBAC003BatchReceived(String _operator, String _from, List<BigInteger> _ids, List<BigInteger> _values, byte[] _data) {
         final Function function = new Function(FUNC_ONBAC003BATCHRECEIVED, 
-                Arrays.<Type>asList(new Address(_operator),
-                new Address(_from),
-                new DynamicArray<Uint256>(
-                        org.fisco.bcos.web3j.abi.Utils.typeMap(_ids, Uint256.class)),
-                new DynamicArray<Uint256>(
-                        org.fisco.bcos.web3j.abi.Utils.typeMap(_values, Uint256.class)),
-                new DynamicBytes(_data)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Address(_operator), 
+                new org.fisco.bcos.web3j.abi.datatypes.Address(_from), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicArray<org.fisco.bcos.web3j.abi.datatypes.generated.Uint256>(
+                        org.fisco.bcos.web3j.abi.Utils.typeMap(_ids, org.fisco.bcos.web3j.abi.datatypes.generated.Uint256.class)), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicArray<org.fisco.bcos.web3j.abi.datatypes.generated.Uint256>(
+                        org.fisco.bcos.web3j.abi.Utils.typeMap(_values, org.fisco.bcos.web3j.abi.datatypes.generated.Uint256.class)), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicBytes(_data)), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<Bytes4>() {}));
         return executeRemoteCallSingleValueReturn(function, byte[].class);
     }
@@ -134,13 +134,13 @@ public class BAC003 extends Contract {
     public RemoteCall<TransactionReceipt> safeBatchTransferFrom(String _from, String _to, List<BigInteger> _ids, List<BigInteger> _values, byte[] _data) {
         final Function function = new Function(
                 FUNC_SAFEBATCHTRANSFERFROM, 
-                Arrays.<Type>asList(new Address(_from),
-                new Address(_to),
-                new DynamicArray<Uint256>(
-                        org.fisco.bcos.web3j.abi.Utils.typeMap(_ids, Uint256.class)),
-                new DynamicArray<Uint256>(
-                        org.fisco.bcos.web3j.abi.Utils.typeMap(_values, Uint256.class)),
-                new DynamicBytes(_data)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Address(_from), 
+                new org.fisco.bcos.web3j.abi.datatypes.Address(_to), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicArray<org.fisco.bcos.web3j.abi.datatypes.generated.Uint256>(
+                        org.fisco.bcos.web3j.abi.Utils.typeMap(_ids, org.fisco.bcos.web3j.abi.datatypes.generated.Uint256.class)), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicArray<org.fisco.bcos.web3j.abi.datatypes.generated.Uint256>(
+                        org.fisco.bcos.web3j.abi.Utils.typeMap(_values, org.fisco.bcos.web3j.abi.datatypes.generated.Uint256.class)), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicBytes(_data)), 
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function);
     }
@@ -148,13 +148,13 @@ public class BAC003 extends Contract {
     public void safeBatchTransferFrom(String _from, String _to, List<BigInteger> _ids, List<BigInteger> _values, byte[] _data, TransactionSucCallback callback) {
         final Function function = new Function(
                 FUNC_SAFEBATCHTRANSFERFROM, 
-                Arrays.<Type>asList(new Address(_from),
-                new Address(_to),
-                new DynamicArray<Uint256>(
-                        org.fisco.bcos.web3j.abi.Utils.typeMap(_ids, Uint256.class)),
-                new DynamicArray<Uint256>(
-                        org.fisco.bcos.web3j.abi.Utils.typeMap(_values, Uint256.class)),
-                new DynamicBytes(_data)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Address(_from), 
+                new org.fisco.bcos.web3j.abi.datatypes.Address(_to), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicArray<org.fisco.bcos.web3j.abi.datatypes.generated.Uint256>(
+                        org.fisco.bcos.web3j.abi.Utils.typeMap(_ids, org.fisco.bcos.web3j.abi.datatypes.generated.Uint256.class)), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicArray<org.fisco.bcos.web3j.abi.datatypes.generated.Uint256>(
+                        org.fisco.bcos.web3j.abi.Utils.typeMap(_values, org.fisco.bcos.web3j.abi.datatypes.generated.Uint256.class)), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicBytes(_data)), 
                 Collections.<TypeReference<?>>emptyList());
         asyncExecuteTransaction(function, callback);
     }
@@ -162,30 +162,30 @@ public class BAC003 extends Contract {
     public String safeBatchTransferFromSeq(String _from, String _to, List<BigInteger> _ids, List<BigInteger> _values, byte[] _data) {
         final Function function = new Function(
                 FUNC_SAFEBATCHTRANSFERFROM, 
-                Arrays.<Type>asList(new Address(_from),
-                new Address(_to),
-                new DynamicArray<Uint256>(
-                        org.fisco.bcos.web3j.abi.Utils.typeMap(_ids, Uint256.class)),
-                new DynamicArray<Uint256>(
-                        org.fisco.bcos.web3j.abi.Utils.typeMap(_values, Uint256.class)),
-                new DynamicBytes(_data)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Address(_from), 
+                new org.fisco.bcos.web3j.abi.datatypes.Address(_to), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicArray<org.fisco.bcos.web3j.abi.datatypes.generated.Uint256>(
+                        org.fisco.bcos.web3j.abi.Utils.typeMap(_ids, org.fisco.bcos.web3j.abi.datatypes.generated.Uint256.class)), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicArray<org.fisco.bcos.web3j.abi.datatypes.generated.Uint256>(
+                        org.fisco.bcos.web3j.abi.Utils.typeMap(_values, org.fisco.bcos.web3j.abi.datatypes.generated.Uint256.class)), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicBytes(_data)), 
                 Collections.<TypeReference<?>>emptyList());
         return createTransactionSeq(function);
     }
 
     public RemoteCall<BigInteger> totalAmount(BigInteger _id) {
         final Function function = new Function(FUNC_TOTALAMOUNT, 
-                Arrays.<Type>asList(new Uint256(_id)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_id)), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<Uint256>() {}));
         return executeRemoteCallSingleValueReturn(function, BigInteger.class);
     }
 
     public RemoteCall<List> balanceOfBatch(List<String> _owners, List<BigInteger> _ids) {
         final Function function = new Function(FUNC_BALANCEOFBATCH, 
-                Arrays.<Type>asList(new DynamicArray<Address>(
-                        org.fisco.bcos.web3j.abi.Utils.typeMap(_owners, Address.class)),
-                new DynamicArray<Uint256>(
-                        org.fisco.bcos.web3j.abi.Utils.typeMap(_ids, Uint256.class))),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.DynamicArray<org.fisco.bcos.web3j.abi.datatypes.Address>(
+                        org.fisco.bcos.web3j.abi.Utils.typeMap(_owners, org.fisco.bcos.web3j.abi.datatypes.Address.class)), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicArray<org.fisco.bcos.web3j.abi.datatypes.generated.Uint256>(
+                        org.fisco.bcos.web3j.abi.Utils.typeMap(_ids, org.fisco.bcos.web3j.abi.datatypes.generated.Uint256.class))), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<DynamicArray<Uint256>>() {}));
         return new RemoteCall<List>(
                 new Callable<List>() {
@@ -201,8 +201,8 @@ public class BAC003 extends Contract {
     public RemoteCall<TransactionReceipt> setURI(String _uri, BigInteger _id) {
         final Function function = new Function(
                 FUNC_SETURI, 
-                Arrays.<Type>asList(new Utf8String(_uri),
-                new Uint256(_id)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Utf8String(_uri), 
+                new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_id)), 
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function);
     }
@@ -210,8 +210,8 @@ public class BAC003 extends Contract {
     public void setURI(String _uri, BigInteger _id, TransactionSucCallback callback) {
         final Function function = new Function(
                 FUNC_SETURI, 
-                Arrays.<Type>asList(new Utf8String(_uri),
-                new Uint256(_id)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Utf8String(_uri), 
+                new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_id)), 
                 Collections.<TypeReference<?>>emptyList());
         asyncExecuteTransaction(function, callback);
     }
@@ -219,16 +219,16 @@ public class BAC003 extends Contract {
     public String setURISeq(String _uri, BigInteger _id) {
         final Function function = new Function(
                 FUNC_SETURI, 
-                Arrays.<Type>asList(new Utf8String(_uri),
-                new Uint256(_id)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Utf8String(_uri), 
+                new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_id)), 
                 Collections.<TypeReference<?>>emptyList());
         return createTransactionSeq(function);
     }
 
     public RemoteCall<BigInteger> balance(String _owner, BigInteger _id) {
         final Function function = new Function(FUNC_BALANCE, 
-                Arrays.<Type>asList(new Address(_owner),
-                new Uint256(_id)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Address(_owner), 
+                new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_id)), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<Uint256>() {}));
         return executeRemoteCallSingleValueReturn(function, BigInteger.class);
     }
@@ -236,8 +236,8 @@ public class BAC003 extends Contract {
     public RemoteCall<TransactionReceipt> setApprovalForAll(String _operator, Boolean _approved) {
         final Function function = new Function(
                 FUNC_SETAPPROVALFORALL, 
-                Arrays.<Type>asList(new Address(_operator),
-                new Bool(_approved)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Address(_operator), 
+                new org.fisco.bcos.web3j.abi.datatypes.Bool(_approved)), 
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function);
     }
@@ -245,8 +245,8 @@ public class BAC003 extends Contract {
     public void setApprovalForAll(String _operator, Boolean _approved, TransactionSucCallback callback) {
         final Function function = new Function(
                 FUNC_SETAPPROVALFORALL, 
-                Arrays.<Type>asList(new Address(_operator),
-                new Bool(_approved)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Address(_operator), 
+                new org.fisco.bcos.web3j.abi.datatypes.Bool(_approved)), 
                 Collections.<TypeReference<?>>emptyList());
         asyncExecuteTransaction(function, callback);
     }
@@ -254,8 +254,8 @@ public class BAC003 extends Contract {
     public String setApprovalForAllSeq(String _operator, Boolean _approved) {
         final Function function = new Function(
                 FUNC_SETAPPROVALFORALL, 
-                Arrays.<Type>asList(new Address(_operator),
-                new Bool(_approved)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Address(_operator), 
+                new org.fisco.bcos.web3j.abi.datatypes.Bool(_approved)), 
                 Collections.<TypeReference<?>>emptyList());
         return createTransactionSeq(function);
     }
@@ -263,12 +263,12 @@ public class BAC003 extends Contract {
     public RemoteCall<TransactionReceipt> increase(BigInteger _id, List<String> _to, List<BigInteger> _quantities, byte[] _data) {
         final Function function = new Function(
                 FUNC_INCREASE, 
-                Arrays.<Type>asList(new Uint256(_id),
-                new DynamicArray<Address>(
-                        org.fisco.bcos.web3j.abi.Utils.typeMap(_to, Address.class)),
-                new DynamicArray<Uint256>(
-                        org.fisco.bcos.web3j.abi.Utils.typeMap(_quantities, Uint256.class)),
-                new DynamicBytes(_data)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_id), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicArray<org.fisco.bcos.web3j.abi.datatypes.Address>(
+                        org.fisco.bcos.web3j.abi.Utils.typeMap(_to, org.fisco.bcos.web3j.abi.datatypes.Address.class)), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicArray<org.fisco.bcos.web3j.abi.datatypes.generated.Uint256>(
+                        org.fisco.bcos.web3j.abi.Utils.typeMap(_quantities, org.fisco.bcos.web3j.abi.datatypes.generated.Uint256.class)), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicBytes(_data)), 
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function);
     }
@@ -276,12 +276,12 @@ public class BAC003 extends Contract {
     public void increase(BigInteger _id, List<String> _to, List<BigInteger> _quantities, byte[] _data, TransactionSucCallback callback) {
         final Function function = new Function(
                 FUNC_INCREASE, 
-                Arrays.<Type>asList(new Uint256(_id),
-                new DynamicArray<Address>(
-                        org.fisco.bcos.web3j.abi.Utils.typeMap(_to, Address.class)),
-                new DynamicArray<Uint256>(
-                        org.fisco.bcos.web3j.abi.Utils.typeMap(_quantities, Uint256.class)),
-                new DynamicBytes(_data)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_id), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicArray<org.fisco.bcos.web3j.abi.datatypes.Address>(
+                        org.fisco.bcos.web3j.abi.Utils.typeMap(_to, org.fisco.bcos.web3j.abi.datatypes.Address.class)), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicArray<org.fisco.bcos.web3j.abi.datatypes.generated.Uint256>(
+                        org.fisco.bcos.web3j.abi.Utils.typeMap(_quantities, org.fisco.bcos.web3j.abi.datatypes.generated.Uint256.class)), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicBytes(_data)), 
                 Collections.<TypeReference<?>>emptyList());
         asyncExecuteTransaction(function, callback);
     }
@@ -289,12 +289,12 @@ public class BAC003 extends Contract {
     public String increaseSeq(BigInteger _id, List<String> _to, List<BigInteger> _quantities, byte[] _data) {
         final Function function = new Function(
                 FUNC_INCREASE, 
-                Arrays.<Type>asList(new Uint256(_id),
-                new DynamicArray<Address>(
-                        org.fisco.bcos.web3j.abi.Utils.typeMap(_to, Address.class)),
-                new DynamicArray<Uint256>(
-                        org.fisco.bcos.web3j.abi.Utils.typeMap(_quantities, Uint256.class)),
-                new DynamicBytes(_data)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_id), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicArray<org.fisco.bcos.web3j.abi.datatypes.Address>(
+                        org.fisco.bcos.web3j.abi.Utils.typeMap(_to, org.fisco.bcos.web3j.abi.datatypes.Address.class)), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicArray<org.fisco.bcos.web3j.abi.datatypes.generated.Uint256>(
+                        org.fisco.bcos.web3j.abi.Utils.typeMap(_quantities, org.fisco.bcos.web3j.abi.datatypes.generated.Uint256.class)), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicBytes(_data)), 
                 Collections.<TypeReference<?>>emptyList());
         return createTransactionSeq(function);
     }
@@ -309,9 +309,9 @@ public class BAC003 extends Contract {
     public RemoteCall<TransactionReceipt> destroy(BigInteger _id, BigInteger _value, byte[] _data) {
         final Function function = new Function(
                 FUNC_DESTROY, 
-                Arrays.<Type>asList(new Uint256(_id),
-                new Uint256(_value),
-                new DynamicBytes(_data)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_id), 
+                new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_value), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicBytes(_data)), 
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function);
     }
@@ -319,9 +319,9 @@ public class BAC003 extends Contract {
     public void destroy(BigInteger _id, BigInteger _value, byte[] _data, TransactionSucCallback callback) {
         final Function function = new Function(
                 FUNC_DESTROY, 
-                Arrays.<Type>asList(new Uint256(_id),
-                new Uint256(_value),
-                new DynamicBytes(_data)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_id), 
+                new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_value), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicBytes(_data)), 
                 Collections.<TypeReference<?>>emptyList());
         asyncExecuteTransaction(function, callback);
     }
@@ -329,9 +329,9 @@ public class BAC003 extends Contract {
     public String destroySeq(BigInteger _id, BigInteger _value, byte[] _data) {
         final Function function = new Function(
                 FUNC_DESTROY, 
-                Arrays.<Type>asList(new Uint256(_id),
-                new Uint256(_value),
-                new DynamicBytes(_data)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_id), 
+                new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_value), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicBytes(_data)), 
                 Collections.<TypeReference<?>>emptyList());
         return createTransactionSeq(function);
     }
@@ -339,9 +339,9 @@ public class BAC003 extends Contract {
     public RemoteCall<TransactionReceipt> create(BigInteger _initialSupply, String _uri, byte[] _data) {
         final Function function = new Function(
                 FUNC_CREATE, 
-                Arrays.<Type>asList(new Uint256(_initialSupply),
-                new Utf8String(_uri),
-                new DynamicBytes(_data)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_initialSupply), 
+                new org.fisco.bcos.web3j.abi.datatypes.Utf8String(_uri), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicBytes(_data)), 
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function);
     }
@@ -349,9 +349,9 @@ public class BAC003 extends Contract {
     public void create(BigInteger _initialSupply, String _uri, byte[] _data, TransactionSucCallback callback) {
         final Function function = new Function(
                 FUNC_CREATE, 
-                Arrays.<Type>asList(new Uint256(_initialSupply),
-                new Utf8String(_uri),
-                new DynamicBytes(_data)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_initialSupply), 
+                new org.fisco.bcos.web3j.abi.datatypes.Utf8String(_uri), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicBytes(_data)), 
                 Collections.<TypeReference<?>>emptyList());
         asyncExecuteTransaction(function, callback);
     }
@@ -359,17 +359,17 @@ public class BAC003 extends Contract {
     public String createSeq(BigInteger _initialSupply, String _uri, byte[] _data) {
         final Function function = new Function(
                 FUNC_CREATE, 
-                Arrays.<Type>asList(new Uint256(_initialSupply),
-                new Utf8String(_uri),
-                new DynamicBytes(_data)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_initialSupply), 
+                new org.fisco.bcos.web3j.abi.datatypes.Utf8String(_uri), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicBytes(_data)), 
                 Collections.<TypeReference<?>>emptyList());
         return createTransactionSeq(function);
     }
 
     public RemoteCall<Boolean> isApprovedForAll(String _owner, String _operator) {
         final Function function = new Function(FUNC_ISAPPROVEDFORALL, 
-                Arrays.<Type>asList(new Address(_owner),
-                new Address(_operator)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Address(_owner), 
+                new org.fisco.bcos.web3j.abi.datatypes.Address(_operator)), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<Bool>() {}));
         return executeRemoteCallSingleValueReturn(function, Boolean.class);
     }
@@ -377,11 +377,11 @@ public class BAC003 extends Contract {
     public RemoteCall<TransactionReceipt> safeTransferFrom(String _from, String _to, BigInteger _id, BigInteger _value, byte[] _data) {
         final Function function = new Function(
                 FUNC_SAFETRANSFERFROM, 
-                Arrays.<Type>asList(new Address(_from),
-                new Address(_to),
-                new Uint256(_id),
-                new Uint256(_value),
-                new DynamicBytes(_data)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Address(_from), 
+                new org.fisco.bcos.web3j.abi.datatypes.Address(_to), 
+                new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_id), 
+                new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_value), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicBytes(_data)), 
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function);
     }
@@ -389,11 +389,11 @@ public class BAC003 extends Contract {
     public void safeTransferFrom(String _from, String _to, BigInteger _id, BigInteger _value, byte[] _data, TransactionSucCallback callback) {
         final Function function = new Function(
                 FUNC_SAFETRANSFERFROM, 
-                Arrays.<Type>asList(new Address(_from),
-                new Address(_to),
-                new Uint256(_id),
-                new Uint256(_value),
-                new DynamicBytes(_data)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Address(_from), 
+                new org.fisco.bcos.web3j.abi.datatypes.Address(_to), 
+                new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_id), 
+                new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_value), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicBytes(_data)), 
                 Collections.<TypeReference<?>>emptyList());
         asyncExecuteTransaction(function, callback);
     }
@@ -401,30 +401,30 @@ public class BAC003 extends Contract {
     public String safeTransferFromSeq(String _from, String _to, BigInteger _id, BigInteger _value, byte[] _data) {
         final Function function = new Function(
                 FUNC_SAFETRANSFERFROM, 
-                Arrays.<Type>asList(new Address(_from),
-                new Address(_to),
-                new Uint256(_id),
-                new Uint256(_value),
-                new DynamicBytes(_data)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Address(_from), 
+                new org.fisco.bcos.web3j.abi.datatypes.Address(_to), 
+                new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_id), 
+                new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_value), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicBytes(_data)), 
                 Collections.<TypeReference<?>>emptyList());
         return createTransactionSeq(function);
     }
 
     public RemoteCall<byte[]> onBAC003Received(String _operator, String _from, BigInteger _id, BigInteger _value, byte[] _data) {
         final Function function = new Function(FUNC_ONBAC003RECEIVED, 
-                Arrays.<Type>asList(new Address(_operator),
-                new Address(_from),
-                new Uint256(_id),
-                new Uint256(_value),
-                new DynamicBytes(_data)),
+                Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Address(_operator), 
+                new org.fisco.bcos.web3j.abi.datatypes.Address(_from), 
+                new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_id), 
+                new org.fisco.bcos.web3j.abi.datatypes.generated.Uint256(_value), 
+                new org.fisco.bcos.web3j.abi.datatypes.DynamicBytes(_data)), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<Bytes4>() {}));
         return executeRemoteCallSingleValueReturn(function, byte[].class);
     }
 
     public List<TransferSingleEventResponse> getTransferSingleEvents(TransactionReceipt transactionReceipt) {
-        List<EventValuesWithLog> valueList = extractEventParametersWithLog(TRANSFERSINGLE_EVENT, transactionReceipt);
+        List<Contract.EventValuesWithLog> valueList = extractEventParametersWithLog(TRANSFERSINGLE_EVENT, transactionReceipt);
         ArrayList<TransferSingleEventResponse> responses = new ArrayList<TransferSingleEventResponse>(valueList.size());
-        for (EventValuesWithLog eventValues : valueList) {
+        for (Contract.EventValuesWithLog eventValues : valueList) {
             TransferSingleEventResponse typedResponse = new TransferSingleEventResponse();
             typedResponse.log = eventValues.getLog();
             typedResponse._operator = (String) eventValues.getIndexedValues().get(0).getValue();
@@ -442,7 +442,7 @@ public class BAC003 extends Contract {
         return web3j.logFlowable(filter).map(new io.reactivex.functions.Function<Log, TransferSingleEventResponse>() {
             @Override
             public TransferSingleEventResponse apply(Log log) {
-                EventValuesWithLog eventValues = extractEventParametersWithLog(TRANSFERSINGLE_EVENT, log);
+                Contract.EventValuesWithLog eventValues = extractEventParametersWithLog(TRANSFERSINGLE_EVENT, log);
                 TransferSingleEventResponse typedResponse = new TransferSingleEventResponse();
                 typedResponse.log = log;
                 typedResponse._operator = (String) eventValues.getIndexedValues().get(0).getValue();
@@ -463,9 +463,9 @@ public class BAC003 extends Contract {
     }
 
     public List<TransferBatchEventResponse> getTransferBatchEvents(TransactionReceipt transactionReceipt) {
-        List<EventValuesWithLog> valueList = extractEventParametersWithLog(TRANSFERBATCH_EVENT, transactionReceipt);
+        List<Contract.EventValuesWithLog> valueList = extractEventParametersWithLog(TRANSFERBATCH_EVENT, transactionReceipt);
         ArrayList<TransferBatchEventResponse> responses = new ArrayList<TransferBatchEventResponse>(valueList.size());
-        for (EventValuesWithLog eventValues : valueList) {
+        for (Contract.EventValuesWithLog eventValues : valueList) {
             TransferBatchEventResponse typedResponse = new TransferBatchEventResponse();
             typedResponse.log = eventValues.getLog();
             typedResponse._operator = (String) eventValues.getIndexedValues().get(0).getValue();
@@ -482,7 +482,7 @@ public class BAC003 extends Contract {
         return web3j.logFlowable(filter).map(new io.reactivex.functions.Function<Log, TransferBatchEventResponse>() {
             @Override
             public TransferBatchEventResponse apply(Log log) {
-                EventValuesWithLog eventValues = extractEventParametersWithLog(TRANSFERBATCH_EVENT, log);
+                Contract.EventValuesWithLog eventValues = extractEventParametersWithLog(TRANSFERBATCH_EVENT, log);
                 TransferBatchEventResponse typedResponse = new TransferBatchEventResponse();
                 typedResponse.log = log;
                 typedResponse._operator = (String) eventValues.getIndexedValues().get(0).getValue();
@@ -502,9 +502,9 @@ public class BAC003 extends Contract {
     }
 
     public List<ApprovalForAllEventResponse> getApprovalForAllEvents(TransactionReceipt transactionReceipt) {
-        List<EventValuesWithLog> valueList = extractEventParametersWithLog(APPROVALFORALL_EVENT, transactionReceipt);
+        List<Contract.EventValuesWithLog> valueList = extractEventParametersWithLog(APPROVALFORALL_EVENT, transactionReceipt);
         ArrayList<ApprovalForAllEventResponse> responses = new ArrayList<ApprovalForAllEventResponse>(valueList.size());
-        for (EventValuesWithLog eventValues : valueList) {
+        for (Contract.EventValuesWithLog eventValues : valueList) {
             ApprovalForAllEventResponse typedResponse = new ApprovalForAllEventResponse();
             typedResponse.log = eventValues.getLog();
             typedResponse._owner = (String) eventValues.getIndexedValues().get(0).getValue();
@@ -519,7 +519,7 @@ public class BAC003 extends Contract {
         return web3j.logFlowable(filter).map(new io.reactivex.functions.Function<Log, ApprovalForAllEventResponse>() {
             @Override
             public ApprovalForAllEventResponse apply(Log log) {
-                EventValuesWithLog eventValues = extractEventParametersWithLog(APPROVALFORALL_EVENT, log);
+                Contract.EventValuesWithLog eventValues = extractEventParametersWithLog(APPROVALFORALL_EVENT, log);
                 ApprovalForAllEventResponse typedResponse = new ApprovalForAllEventResponse();
                 typedResponse.log = log;
                 typedResponse._owner = (String) eventValues.getIndexedValues().get(0).getValue();
@@ -537,9 +537,9 @@ public class BAC003 extends Contract {
     }
 
     public List<URIEventResponse> getURIEvents(TransactionReceipt transactionReceipt) {
-        List<EventValuesWithLog> valueList = extractEventParametersWithLog(URI_EVENT, transactionReceipt);
+        List<Contract.EventValuesWithLog> valueList = extractEventParametersWithLog(URI_EVENT, transactionReceipt);
         ArrayList<URIEventResponse> responses = new ArrayList<URIEventResponse>(valueList.size());
-        for (EventValuesWithLog eventValues : valueList) {
+        for (Contract.EventValuesWithLog eventValues : valueList) {
             URIEventResponse typedResponse = new URIEventResponse();
             typedResponse.log = eventValues.getLog();
             typedResponse._id = (BigInteger) eventValues.getIndexedValues().get(0).getValue();
@@ -553,7 +553,7 @@ public class BAC003 extends Contract {
         return web3j.logFlowable(filter).map(new io.reactivex.functions.Function<Log, URIEventResponse>() {
             @Override
             public URIEventResponse apply(Log log) {
-                EventValuesWithLog eventValues = extractEventParametersWithLog(URI_EVENT, log);
+                Contract.EventValuesWithLog eventValues = extractEventParametersWithLog(URI_EVENT, log);
                 URIEventResponse typedResponse = new URIEventResponse();
                 typedResponse.log = log;
                 typedResponse._id = (BigInteger) eventValues.getIndexedValues().get(0).getValue();
@@ -588,24 +588,24 @@ public class BAC003 extends Contract {
     }
 
     public static RemoteCall<BAC003> deploy(Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider, String description) {
-        String encodedConstructor = FunctionEncoder.encodeConstructor(Arrays.<Type>asList(new Utf8String(description)));
+        String encodedConstructor = FunctionEncoder.encodeConstructor(Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Utf8String(description)));
         return deployRemoteCall(BAC003.class, web3j, credentials, contractGasProvider, BINARY, encodedConstructor);
     }
 
     public static RemoteCall<BAC003> deploy(Web3j web3j, TransactionManager transactionManager, ContractGasProvider contractGasProvider, String description) {
-        String encodedConstructor = FunctionEncoder.encodeConstructor(Arrays.<Type>asList(new Utf8String(description)));
+        String encodedConstructor = FunctionEncoder.encodeConstructor(Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Utf8String(description)));
         return deployRemoteCall(BAC003.class, web3j, transactionManager, contractGasProvider, BINARY, encodedConstructor);
     }
 
     @Deprecated
     public static RemoteCall<BAC003> deploy(Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit, String description) {
-        String encodedConstructor = FunctionEncoder.encodeConstructor(Arrays.<Type>asList(new Utf8String(description)));
+        String encodedConstructor = FunctionEncoder.encodeConstructor(Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Utf8String(description)));
         return deployRemoteCall(BAC003.class, web3j, credentials, gasPrice, gasLimit, BINARY, encodedConstructor);
     }
 
     @Deprecated
     public static RemoteCall<BAC003> deploy(Web3j web3j, TransactionManager transactionManager, BigInteger gasPrice, BigInteger gasLimit, String description) {
-        String encodedConstructor = FunctionEncoder.encodeConstructor(Arrays.<Type>asList(new Utf8String(description)));
+        String encodedConstructor = FunctionEncoder.encodeConstructor(Arrays.<Type>asList(new org.fisco.bcos.web3j.abi.datatypes.Utf8String(description)));
         return deployRemoteCall(BAC003.class, web3j, transactionManager, gasPrice, gasLimit, BINARY, encodedConstructor);
     }
 

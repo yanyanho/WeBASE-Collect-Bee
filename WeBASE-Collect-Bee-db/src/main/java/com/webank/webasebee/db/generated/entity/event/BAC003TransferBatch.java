@@ -31,8 +31,6 @@ public class BAC003TransferBatch extends IdEntity {
     private long blockHeight;
     @Column(name = "tx_hash")
 	private String txHash;
-	@Column(name = "event_contract_address")
-    private String eventContractAddress;
 	@Column(name = "_operator")
 	private String _operator;
 	@Column(name = "_from")

@@ -31,8 +31,6 @@ public class BAC001Suspended extends IdEntity {
     private long blockHeight;
     @Column(name = "tx_hash")
 	private String txHash;
-	@Column(name = "event_contract_address")
-    private String eventContractAddress;
 	@Column(name = "_account")
 	private String account;
 	@Column(name = "block_timestamp")
