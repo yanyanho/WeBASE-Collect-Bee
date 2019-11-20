@@ -33,6 +33,8 @@ public class BAC003SetURI extends IdEntity {
     private String txHash;
     @Column(name = "contract_address")
     private String contractAddress;
+    @Column(name = "method_status")
+    private String methodStatus;
 	@Column(name = "_uri")
 	private String _uri;
 	@Column(name = "_id")

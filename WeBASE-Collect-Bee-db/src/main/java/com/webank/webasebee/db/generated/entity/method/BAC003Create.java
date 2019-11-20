@@ -33,6 +33,8 @@ public class BAC003Create extends IdEntity {
     private String txHash;
     @Column(name = "contract_address")
     private String contractAddress;
+    @Column(name = "method_status")
+    private String methodStatus;
 	@Column(name = "_initial_supply")
 	private long _initialSupply;
 	@Column(name = "_uri")

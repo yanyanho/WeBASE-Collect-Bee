@@ -33,6 +33,8 @@ public class BAC003SafeBatchTransferFrom extends IdEntity {
     private String txHash;
     @Column(name = "contract_address")
     private String contractAddress;
+    @Column(name = "method_status")
+    private String methodStatus;
 	@Column(name = "_from")
 	private String _from;
 	@Column(name = "_to")

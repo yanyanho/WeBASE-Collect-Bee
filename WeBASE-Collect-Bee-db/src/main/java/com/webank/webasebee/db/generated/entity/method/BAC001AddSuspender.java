@@ -33,6 +33,8 @@ public class BAC001AddSuspender extends IdEntity {
     private String txHash;
     @Column(name = "contract_address")
     private String contractAddress;
+    @Column(name = "method_status")
+    private String methodStatus;
 	@Column(name = "_account")
 	private String account;
 	@Column(name = "block_timestamp")

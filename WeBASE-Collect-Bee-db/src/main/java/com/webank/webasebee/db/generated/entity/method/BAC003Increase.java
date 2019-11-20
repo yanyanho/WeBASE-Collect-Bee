@@ -33,6 +33,8 @@ public class BAC003Increase extends IdEntity {
     private String txHash;
     @Column(name = "contract_address")
     private String contractAddress;
+    @Column(name = "method_status")
+    private String methodStatus;
 	@Column(name = "_id")
 	private long _id;
 	@Column(name = "_to")

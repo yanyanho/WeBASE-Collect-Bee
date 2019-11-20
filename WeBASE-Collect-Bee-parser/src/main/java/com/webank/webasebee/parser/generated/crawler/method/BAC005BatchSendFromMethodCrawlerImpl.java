@@ -62,7 +62,7 @@ public class BAC005BatchSendFromMethodCrawlerImpl implements BcosMethodCrawlerIn
 		
 		entity.setFrom(AddressUtils.bigIntegerToString(params.get(0).getValue()));
 		entity.setTo(String.valueOf(params.get(1).getValue()));
-		entity.setAssetId(String.valueOf(params.get(2).getValue()));
+		entity.setAssetId(BytesUtils.uint256DynamicArrayToString(params.get(2).getValue()));
 		entity.setData(BytesUtils.bytesArrayToString(params.get(3).getValue()));
 		entity.setBlockTimeStamp(new Date(blockTimeStamp.longValue()));	
 		entity.setIdentifier("BAC005BatchSendFrom");			
