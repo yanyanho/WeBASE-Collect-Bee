@@ -33,6 +33,8 @@ public class BAC003SetApprovalForAll extends IdEntity {
     private String txHash;
     @Column(name = "contract_address")
     private String contractAddress;
+    @Column(name = "method_status")
+    private String methodStatus;
 	@Column(name = "_operator")
 	private String _operator;
 	@Column(name = "_approved")

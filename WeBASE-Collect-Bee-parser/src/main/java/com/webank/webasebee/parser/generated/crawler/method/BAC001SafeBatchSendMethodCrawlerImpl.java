@@ -61,7 +61,7 @@ public class BAC001SafeBatchSendMethodCrawlerImpl implements BcosMethodCrawlerIn
 		List<Type> params = FunctionReturnDecoder.decode(input, MethodUtils.getMethodTypeReferenceList(list));
 		
 		entity.setTo(String.valueOf(params.get(0).getValue()));
-		entity.setValues(String.valueOf(params.get(1).getValue()));
+		entity.setValues(BytesUtils.uint256DynamicArrayToString(params.get(1).getValue()));
 		entity.setData(String.valueOf(params.get(2).getValue()));
 		entity.setBlockTimeStamp(new Date(blockTimeStamp.longValue()));	
 		entity.setIdentifier("BAC001SafeBatchSend");			

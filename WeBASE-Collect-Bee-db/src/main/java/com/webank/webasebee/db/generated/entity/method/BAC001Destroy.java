@@ -33,6 +33,8 @@ public class BAC001Destroy extends IdEntity {
     private String txHash;
     @Column(name = "contract_address")
     private String contractAddress;
+    @Column(name = "method_status")
+    private String methodStatus;
 	@Column(name = "_value")
 	private long value;
 	@Column(name = "_data")

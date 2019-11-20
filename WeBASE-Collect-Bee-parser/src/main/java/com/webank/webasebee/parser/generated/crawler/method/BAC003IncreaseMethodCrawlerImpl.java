@@ -62,7 +62,7 @@ public class BAC003IncreaseMethodCrawlerImpl implements BcosMethodCrawlerInterfa
 		
 		entity.set_id(BigIntegerUtils.toLong(params.get(0).getValue()));
 		entity.set_to(String.valueOf(params.get(1).getValue()));
-		entity.set_quantities(String.valueOf(params.get(2).getValue()));
+		entity.set_quantities(BytesUtils.uint256DynamicArrayToString(params.get(2).getValue()));
 		entity.set_data(BytesUtils.bytesArrayToString(params.get(3).getValue()));
 		entity.setBlockTimeStamp(new Date(blockTimeStamp.longValue()));	
 		entity.setIdentifier("BAC003Increase");			

@@ -62,8 +62,8 @@ public class BAC003SafeBatchTransferFromMethodCrawlerImpl implements BcosMethodC
 		
 		entity.set_from(AddressUtils.bigIntegerToString(params.get(0).getValue()));
 		entity.set_to(AddressUtils.bigIntegerToString(params.get(1).getValue()));
-		entity.set_ids(String.valueOf(params.get(2).getValue()));
-		entity.set_values(String.valueOf(params.get(3).getValue()));
+		entity.set_ids(BytesUtils.uint256DynamicArrayToString(params.get(2).getValue()));
+		entity.set_values(BytesUtils.uint256DynamicArrayToString(params.get(3).getValue()));
 		entity.set_data(BytesUtils.bytesArrayToString(params.get(4).getValue()));
 		entity.setBlockTimeStamp(new Date(blockTimeStamp.longValue()));	
 		entity.setIdentifier("BAC003SafeBatchTransferFrom");			
